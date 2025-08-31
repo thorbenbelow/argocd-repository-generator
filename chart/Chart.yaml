@@ -1,6 +1,6 @@
 apiVersion: v2
 name: argocd-repository-generator
-description: An argocd plugin-generator that lets you template all repositories configured in argocd by their name instead of using their url each time.
+description: An argocd plugin-generator that lets you template all repositories configured in argocd by their name instead of using their url.
 
 # A chart can be either an 'application' or a 'library' chart.
 #
