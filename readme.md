@@ -6,6 +6,12 @@ This simplifies ApplicationSet generators by allowing you to reference repositor
 
 For more information on ArgoCD plugin generators, please refer to the [official ArgoCD documentation](https://argo-cd.readthedocs.io/en/stable/user-guide/application-set/Generators-Plugin/).
 
+## Installation
+
+```bash
+helm install argocd-repository-generator oci://ghcr.io/thorbenbelow/charts/argocd-repository-generator --version 0.1.0
+```
+
 ## Example
 
 Here is a basic example of how to use the generator. This `ApplicationSet` will find the repository named `example` in ArgoCD and use its URL in the template.
