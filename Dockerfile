@@ -17,7 +17,9 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix nocgo -o argocd-repositorty-generator .
 
 FROM gcr.io/distroless/static
-LABEL org.opencontainers.image.source = "https://github.com/thorbenbelow/argocd-repository-generator"
+
+LABEL org.opencontainers.image.source="https://github.com/thorbenbelow/argocd-repository-generator"
+
 WORKDIR /
 COPY --from=builder /app/argocd-repositorty-generator .
 

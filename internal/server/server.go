@@ -14,7 +14,7 @@ import (
 )
 
 type Output struct {
-	Parameters []map[string]string `json:"parameters"`
+	Parameters []map[string]any `json:"parameters"`
 }
 type GetParamsResponse struct {
 	Output Output `json:"output"`
@@ -56,7 +56,7 @@ func Run() {
 		}
 
 		secrets, err := clientset.CoreV1().Secrets("").List(r.Context(), metav1.ListOptions{
-			LabelSelector: "argocd.argoproj.io/secret-type: repository",
+			LabelSelector: "argocd.argoproj.io/secret-type=repository",
 		})
 		if err != nil {
 			http.Error(w, "Error fetching secrets", http.StatusInternalServerError)
@@ -78,7 +78,9 @@ func Run() {
 
 		res := GetParamsResponse{
 			Output: Output{
-				Parameters: []map[string]string{repositories},
+				Parameters: []map[string]any{
+					{"repositories": repositories},
+				},
 			},
 		}
 

@@ -1,0 +1,16 @@
+{{- if .Values.serviceAccount.create -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "argocd-repository-generator.fullname" . }}
+  labels:
+    {{- include "argocd-repository-generator.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "argocd-repository-generator.fullname" . }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "argocd-repository-generator.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+{{- end }}

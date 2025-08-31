@@ -13,13 +13,9 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "argocd-repository-generator",
-	Short: "List configured repositories in ArgoCD",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "An argocd plugin-generator that lets you template all repositories configured in argocd by their name instead of using their url each time.",
+	Long: `This app is an argocd plugin-generator that lets you template all repositories configured in argocd by their name instead of using their url each time.
+For more information on ArgoCD plugin generators, please refer to the official ArgoCD documentation.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {

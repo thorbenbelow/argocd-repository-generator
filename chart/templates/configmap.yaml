@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "argocd-repository-generator.fullname" . }}
+  labels:
+    {{- include "argocd-repository-generator.labels" . | nindent 4 }}
+data:
+  token: "${{ include "argocd-repository-generator.fullname" . }}:token"
+  baseUrl: "http://{{ include "argocd-repository-generator.fullname" . }}:{{ .Values.service.port }}"
