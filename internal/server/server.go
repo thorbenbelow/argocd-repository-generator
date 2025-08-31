@@ -86,4 +86,5 @@ func Run() {
 		json.NewEncoder(w).Encode(res)
 	})
 
+	log.Fatal(http.ListenAndServe(":8080", mux))
 }
