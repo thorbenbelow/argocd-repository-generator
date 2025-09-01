@@ -68,7 +68,11 @@ func Run() {
 
 		for _, secret := range secrets.Items {
 			if url, ok := secret.Data["url"]; ok {
-				repositories[secret.Name] = string(url)
+				if name, ok := secret.Data["name"]; ok {
+					repositories[string(name)] = string(url)
+				} else {
+					slog.Warn("Secret missing 'name' field", slog.String("secret", secret.Name))
+				}
 			} else {
 				slog.Warn("Secret missing 'url' field", slog.String("secret", secret.Name))
 			}
