@@ -9,7 +9,7 @@ For more information on ArgoCD plugin generators, please refer to the [official 
 ## Installation
 
 ```bash
-helm install argocd-repository-generator oci://ghcr.io/thorbenbelow/charts/argocd-repository-generator --version 0.1.0
+helm install argocd-repository-generator oci://ghcr.io/thorbenbelow/charts/argocd-repository-generator --version 0.1.1
 ```
 
 ## Example
@@ -21,6 +21,7 @@ apiVersion: v1
 stringData:
   type: git
   url: https://github.com/argoproj/argocd-example-apps.git
+  name: argocd-example-apps
 kind: Secret
 metadata:
   labels:
@@ -49,7 +50,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: '{{ .repositories.example }}'
+        repoURL: '{{ index .repositories "argocd-example-apps" }}'
         targetRevision: HEAD
         path: guestbook
       destination:
